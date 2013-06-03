@@ -1,6 +1,11 @@
+#-*- coding:utf-8 -*-
+
 import re
 
 def check_ip(ip):
+    """
+    返回ip列表或False
+    """
     ip = ip.strip()
     if '/' in ip:
         divsion = ip.split('/')
@@ -29,6 +34,9 @@ def check_ip(ip):
             return False
 
 def int_to_ip(ip):
+    """
+    整数转换成ip
+    """
     ip = int(ip)
     ret = ''
     for x in xrange(4):
@@ -38,32 +46,35 @@ def int_to_ip(ip):
     return ret
 
 def ip_to_int(ipstr):
+    """
+    ip转换成整数
+    """
     bytes = ipstr.split('.')
     bytes = [int(x) for x in bytes]
     return (bytes[0] << 24) + (bytes[1] << 16) + (bytes[2] << 8) + bytes[3]
 
-# test = check_ip('211.137.96.205/26')
-# print test
-# print len(test)
+test = check_ip('211.137.96.205/26')
+print test
+print len(test)
 
 # test = check_ip('117.135.192.2/30')
 # print test
 # print len(test)
 
-filelist = ['list1.txt','list2.txt','list3.txt','list8.txt',
-    'list9.txt','list10.txt','list11.txt','list12']
-fw = open('list','a')
-for f in filelist:
-    fr = open(f,'r')
-    for line in fr.readlines():
-        iplist = check_ip(line)
-        if iplist:
-            for ip in iplist:
-                fw.write(ip+'\n')
-        else:
-            pass
-    fr.close()
-fw.close()
+# filelist = ['list1.txt','list2.txt','list3.txt','list8.txt',
+#     'list9.txt','list10.txt','list11.txt','list12']
+# fw = open('list','a')
+# for f in filelist:
+#     fr = open(f,'r')
+#     for line in fr.readlines():
+#         iplist = check_ip(line)
+#         if iplist:
+#             for ip in iplist:
+#                 fw.write(ip+'\n')
+#         else:
+#             pass
+#     fr.close()
+# fw.close()
 
 # i = 1
 # fp = open('cidr','r')
